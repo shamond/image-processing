@@ -1,4 +1,3 @@
-import time
 import cv2 as cv
 import numpy as np
 from matplotlib import pyplot as plt
@@ -242,7 +241,7 @@ class Laboratoria_6(Laboratoria_5):
         for i in range(w):
             for j in range(h):
                 xy = np.array([i, j, 1])
-                # np.dot to mnozenie cauchy'ego gdzie moge zapisac to jako tuple odrazu w tym przpadku odrazu ją rozpakuje
+                # np.dot to mnozenie cauchy'ego gdzie moge zapisac to jakotuple odrazu w tym przpadku odrazu ją rozpakuje
                 x, y = np.dot(matrix, xy)
                 if 0 < x < w and 0 < y < h:
                     new_img[x][y] = self.image[i][j]
@@ -318,14 +317,13 @@ if __name__ == "__main__":
     filter_edges = zad_5.filter_edges(filter_zigzag, filter_vertically, filter_horizontally)
     stack1 = np.hstack([sobel_stack, filter_stack])
     stack2 = np.hstack([kernel_stack, blurring_stack])
-    cv.imshow("sobel i filtry ukosny,poziomy,pionowy", stack1)
+    cv.imshow("sobel i oblique,horizontal,vertical filter", stack1)
     cv.waitKey(0)
-    cv.imshow("dolno przepustowy,gorno przepustowy,zwykly,rozmycie", stack2)
+    cv.imshow("low bandwidth,high bandwidth,normal,blurring filter", stack2)
     cv.waitKey(0)
     zad_6 = Laboratoria_6(image)
     zad_6.translation()
     cv.waitKey(0)
     zad_6.rotation()
     cv.waitKey(0)
-    print(f"caly proces trwa: {time.process_time()}")
     cv.destroyAllWindows()
